@@ -1,0 +1,140 @@
+<?xml version="1.0" ?>
+<mujoco model="allegro_hand">
+  
+    <compiler 
+        angle="radian"
+        coordinate="local"
+        inertiafromgeom="true"
+        autolimits="true"
+    /> 
+    
+   
+    <default>
+        <joint limited="true" damping="0.1" armature="0.01"/>
+        <motor ctrllimited="true" ctrlrange="-1 1"/>
+        <geom friction="1.0 0.05 0.01" material="finger_material"/>
+        <collision margin="0.001"/>
+    </default>
+
+    <option timestep="0.002" gravity="0 0 -9.81"/>
+    <asset>
+        <material name="hand_material" rgba="0.8 0.6 0.4 1"/>
+        <material name="finger_material" rgba="0.2 0.2 0.8 1"/>
+    </asset>
+
+    <worldbody>
+  
+        <body name="palm" pos="0 0 0">
+            <geom type="box" size="0.055 0.05 0.015" material="hand_material"/>
+            
+            <!-- (RF) -->
+            <body name="rf_base" pos="0.05 0.04 0">         
+                <body name="rf_univ" pos="0 0 0">
+                    <joint name="rfj0_twist" type="hinge" axis="0 0 1" range="-0.6 0.6"/>
+                    <body name="rf_univ_sep" pos="0 0 0.001">
+                        <joint name="rfj1" type="hinge" axis="0 -1 0" range="-1.7 0.6"/>
+                        <body name="rf_proximal" pos="0 0 0.03">
+                            <geom type="capsule" fromto="0 0 0 0 0 0.06" size="0.016" material="finger_material"/>
+                            <body name="rf_middle" pos="0 0 0.07">
+                                <joint name="rfj2" type="hinge" axis="0 -1 0" range="-0.35 1.3"/>
+                                <geom type="capsule" fromto="0 0 0 0 0 0.05" size="0.016" material="finger_material"/>
+                                <body name="rf_distal" pos="0 0 0.05">
+                                    <joint name="rfj3" type="hinge" axis="0 -1 0" range="-0.2 1.5"/>
+                                    <geom type="capsule" fromto="0 0 0 0 0 0.05" size="0.016" material="finger_material"/>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+
+            <!-- (MF) -->
+            <body name="mf_base" pos="0.05 0 0">
+                <body name="mf_univ" pos="0 0 0">
+                    <joint name="mfj0_twist" type="hinge" axis="0 0 1" range="-0.6 0.6"/>
+                    <body name="mf_univ_sep" pos="0 0 0.001">
+                        <joint name="mfj1" type="hinge" axis="0 -1 0" range="-1.7 0.6"/>
+                        <body name="mf_proximal" pos="0 0 0.03">
+                            <geom type="capsule" fromto="0 0 0 0 0 0.06" size="0.016" material="finger_material"/>
+                            <body name="mf_middle" pos="0 0 0.07">
+                                <joint name="mfj2" type="hinge" axis="0 -1 0" range="-0.35 1.3"/>
+                                <geom type="capsule" fromto="0 0 0 0 0 0.05" size="0.016" material="finger_material"/>
+                                <body name="mf_distal" pos="0 0 0.05">
+                                    <joint name="mfj3" type="hinge" axis="0 -1 0" range="-0.2 1.5"/>
+                                    <geom type="capsule" fromto="0 0 0 0 0 0.05" size="0.016" material="finger_material"/>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+
+            <!-- (FF) -->
+            <body name="ff_base" pos="0.05 -0.04 0">
+                <body name="ff_univ" pos="0 0 0">
+                    <joint name="ffj0_twist" type="hinge" axis="0 0 1" range="-0.6 0.6"/>
+                    <body name="ff_univ_sep" pos="0 0 0.001">
+                        <joint name="ffj1" type="hinge" axis="0 -1 0" range="-1.7 0.6"/>
+                        <body name="ff_proximal" pos="0 0 0.03">
+                            <geom type="capsule" fromto="0 0 0 0 0 0.06" size="0.016" material="finger_material"/>
+                            <body name="ff_middle" pos="0 0 0.07">
+                                <joint name="ffj2" type="hinge" axis="0 -1 0" range="-0.35 1.3"/>
+                                <geom type="capsule" fromto="0 0 0 0 0 0.05" size="0.016" material="finger_material"/>
+                                <body name="ff_distal" pos="0 0 0.05">
+                                    <joint name="ffj3" type="hinge" axis="0 -1 0" range="-0.2 1.5"/>
+                                    <geom type="capsule" fromto="0 0 0 0 0 0.05" size="0.016" material="finger_material"/>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+
+            <!--(Thumb) -->
+            <body name="th_base" pos="-0.01 -0.03 -0.01" quat="1 0.33 0 0">               
+                <geom type="cylinder" size="0.01 0.01" pos="0 0 0" material="finger_material"/>
+                <body name="th_proximal" pos="0 0 0.02">
+                    <body name="th_twist" pos="0 0 0">
+                        <joint name="thj1_twist" type="hinge" axis="0 0 1" range="0.5 2.3"/>
+                        <body name="th_proximal_bend" pos="0 0 0.001">
+                            <joint name="thj1_bend" type="hinge" axis="0 1 0" range="-0.2 1.1"/>
+                            <geom type="capsule" fromto="0 0 0 0 0 0.04" size="0.016" material="finger_material"/>
+                            <body name="th_medial" pos="0 0 0.04">
+                                <joint name="thj2" type="hinge" axis="0 1 0" range="-0.25 1.4"/>
+                                <geom type="capsule" fromto="0 0 0 0 0 0.04" size="0.016" material="finger_material"/>
+                                <body name="th_distal" pos="0 0 0.04">
+                                    <joint name="thj3" type="hinge" axis="0 1 0" range="-0.2 1.6"/>
+                                    <geom type="capsule" fromto="0 0 0 0 0 0.04" size="0.016" material="finger_material"/>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+    </worldbody>
+
+ 
+    <actuator>
+ 
+        <position name="rfa0" joint="rfj0_twist" class="base" ref="0.0"/>
+        <position name="rfa1" joint="rfj1" class="proximal" ref="0.5"/>
+        <position name="rfa2" joint="rfj2" class="medial" ref="1.3"/>
+        <position name="rfa3" joint="rfj3" class="distal" ref="1.5"/>
+      
+        <position name="mfa0" joint="mfj0_twist" class="base" ref="0.0"/>
+        <position name="mfa1" joint="mfj1" class="proximal" ref="0.5"/>
+        <position name="mfa2" joint="mfj2" class="medial" ref="1.3"/>
+        <position name="mfa3" joint="mfj3" class="distal" ref="1.5"/>
+  
+        <position name="ffa0" joint="ffj0_twist" class="base" ref="0.0"/>
+        <position name="ffa1" joint="ffj1" class="proximal" ref="0.5"/>
+        <position name="ffa2" joint="ffj2" class="medial" ref="1.3"/>
+        <position name="ffa3" joint="ffj3" class="distal" ref="1.5"/>
+     
+        <position name="tha1" joint="thj1_twist" class="thumb_twist" ref="0.0"/>
+        <position name="tha2" joint="thj1_bend" class="thumb_proximal" ref="1.1"/>
+        <position name="tha3" joint="thj2" class="thumb_medial" ref="1.4"/>
+        <position name="tha4" joint="thj3" class="thumb_distal" ref="1.6"/>
+    </actuator>
+</mujoco>

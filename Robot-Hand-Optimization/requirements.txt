@@ -1,0 +1,14 @@
+gtimer
+gym
+joblib
+numpy
+pickleshare
+ptyprocess
+pybullet
+pyswarms
+PyYAML
+torch
+torchvision
+xmltodict
+xmlutils
+opencv-python
