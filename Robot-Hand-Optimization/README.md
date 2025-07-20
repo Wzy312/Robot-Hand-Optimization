@@ -52,11 +52,8 @@ The design vector; And the subsequent, cumulative rewards for each episode/trial
 ```
 
 ## Acknowledgements
-This project would have been harder to implement without the great work of
-the developers behind rlkit and pybullet.
 
 The reinforcement learning loop makes extensive use of rlkit, a framework developed
 and maintained by Vitchyr Pong. You find this repository [here](https://github.com/vitchyr/rlkit).
-
 Tasks were simulated in [PyBullet](https://pybullet.org/wordpress/), the
 repository can be found [here](https://github.com/bulletphysics/bullet3/tree/master/examples/pybullet).
