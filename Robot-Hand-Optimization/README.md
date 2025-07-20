@@ -6,11 +6,6 @@ This is an implementation of the data-driven design optimization method presente
 
 Make sure that PyTorch is installed. You find more information here: https://pytorch.org/
 
-First, clone this repository to your local computer as usual.
-Then, install the required packages via pip by executing `pip3 install -r requirements.txt`.
-
-The current version uses the latest version of rlkit by [Vitchyr Pong](https://github.com/vitchyr/rlkit).
-
 Clone the rlkit with
 ```bash
 git clone https://github.com/vitchyr/rlkit.git
@@ -22,7 +17,6 @@ export PYTHONPATH=/path/to/rlkit/
 where the folder `/path/to/rlkit` contains the folder `rlkit`. This enables us
 to import rlkit with `import rlkit`.
 
-You may have to set the environmental variable every time you open a new terminal.
 
 ## Starting experiments
 
